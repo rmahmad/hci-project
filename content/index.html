@@ -5,8 +5,23 @@
         <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
         <script type="text/javascript">
         var socket = io();
+        socket.on('chat message', function(msg) {
+            $('#messages').append($('<li>').text(msg));
+        });
+        socket.on('connected', function(msg) {
+            $('#messages').append($('<li>').text(msg));
+        })
 
         $(document).ready(function() {
+
+            $('#chat-message-box').keyup(function() {
+                if($('#m').val() != '') {
+                    $('#chat-send-button').removeAttr('disabled');
+                }
+                else {
+                    $('#chat-send-button').attr('disabled', 'disabled');
+                }
+            });
 
             $('#button').click(function() {
                 video = document.getElementById("movie");
@@ -16,6 +31,7 @@
             $('form').submit(function(){
                 socket.emit('chat message', $('#m').val());
                 $('#m').val('');
+                $('#chat-send-button').attr('disabled', 'disabled');
                 return false;
             });
 
@@ -34,13 +50,16 @@
         </style>
     </head>
     <body>
+        <div id="fun">
+            
+        </div>
     <video id="movie" controls>
         <source src="assets/movie.mp4" type="video/mp4">
         </video>
-        <input id='button' type='button' />
+        <button id='button' type='button'>Skip 10 seconds</button>
         <ul id="messages"></ul>
-        <form action="">
-            <input id="m" autocomplete="off" /><button>Send</button>
+        <form id="chat-message-box" action="">
+            <input id="m" autocomplete="off" /><button id="chat-send-button" disabled="disabled">Send</button>
         </form>
     </body>
 </html>

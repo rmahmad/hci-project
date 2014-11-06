@@ -9,13 +9,19 @@ app.get('/', function(req, res) {
 
 app.use(express.static('content'));
 
+var users = 0;
 io.on('connection', function(socket) {
-    console.log('connected');
+    users++;
+    if(users == 2) {
+        console.log('Two users online');
+        io.emit('connected', 'Your partner has connected');
+    }
     socket.on('disconnect', function(socket) {
-        console.log('user disconnected');
+        users--;
+//        socket.emit('disconnected', 'Your partner has disconnected')
     });
     socket.on('chat message', function(msg){
-        console.log('message: ' + msg);
+        io.emit('chat message', msg);
     });
 });
 
