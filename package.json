@@ -1,0 +1,9 @@
+{
+  "name": "hci-project",
+  "version": "0.0.1",
+  "description": "project for cse-216",
+  "dependencies": {
+    "express": "^4.10.1",
+    "socket.io": "^1.2.0"
+  }
+}
