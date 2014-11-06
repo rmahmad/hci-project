@@ -1,0 +1,58 @@
+body {
+    font: 13px Helvetica, Arial;
+    width:100%;
+}
+
+video {
+    width: 75%;
+}
+
+#chat-area {
+    border-left: 1px solid #aaa;
+    height:100%;
+    right: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#chat-form {
+    background: #eee;
+    padding: 8px;
+    width: 100%;
+    margin: 0px;
+    position: absolute;
+    bottom: 0;
+}
+
+#chat-message-box {
+    border: 0;
+    padding: 10px;
+    width: 78%;
+    margin-right: 5px;
+}
+
+#chat-send-button {
+    margin-bottom: 4px;
+    width: 20%;
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 44px;
+    max-height: 90%;
+    overflow-y: scroll;
+}
+
+#messages li {
+    padding: 5px 10px;
+}
+
+#messages li:nth-child(odd) {
+    background: #eee;
+}
+
+.system-message {
+    font-style: italic;
+}

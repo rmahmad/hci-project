@@ -1,5 +1,7 @@
 <html>
     <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
@@ -9,13 +11,12 @@
             $('#messages').append($('<li>').text(msg));
         });
         socket.on('connected', function(msg) {
-            $('#messages').append($('<li>').text(msg));
+            $('#messages').append($('<li class="system-message">').text(msg));
         })
 
         $(document).ready(function() {
-
-            $('#chat-message-box').keyup(function() {
-                if($('#m').val() != '') {
+            $('#chat-form').keyup(function() {
+                if($('#chat-message-box').val() != '') {
                     $('#chat-send-button').removeAttr('disabled');
                 }
                 else {
@@ -23,43 +24,36 @@
                 }
             });
 
-            $('#button').click(function() {
+            $('#skip-button').click(function() {
                 video = document.getElementById("movie");
                 console.log(movie.currentTime);
                 movie.currentTime += 10;
             });
+
             $('form').submit(function(){
-                socket.emit('chat message', $('#m').val());
-                $('#m').val('');
+                socket.emit('chat message', $('#chat-message-box').val());
+                $('#chat-message-box').val('');
                 $('#chat-send-button').attr('disabled', 'disabled');
                 return false;
             });
-
         });
         </script>
-
-        <style>
-            * { margin: 0; padding: 0; box-sizing: border-box; }
-            body { font: 13px Helvetica, Arial; }
-            form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-            form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-            form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-            #messages { list-style-type: none; margin: 0; padding: 0; }
-            #messages li { padding: 5px 10px; }
-            #messages li:nth-child(odd) { background: #eee; }
-        </style>
     </head>
-    <body>
-        <div id="fun">
-            
+    <body class="row">
+        <div id="movie-area" class="col-md-8">
+            <video id="movie" controls>
+                <source src="assets/movie.mp4" type="video/mp4">
+            </video>
+            <button id='skip-button' type='button'>Skip 10 seconds</button>
         </div>
-    <video id="movie" controls>
-        <source src="assets/movie.mp4" type="video/mp4">
-        </video>
-        <button id='button' type='button'>Skip 10 seconds</button>
-        <ul id="messages"></ul>
-        <form id="chat-message-box" action="">
-            <input id="m" autocomplete="off" /><button id="chat-send-button" disabled="disabled">Send</button>
-        </form>
+        <div id="chat-area" class="col-md-4">
+            <ul id="messages"></ul>
+            <form id="chat-form" action="">
+                <input id="chat-message-box" autocomplete="off" />
+                <button id="chat-send-button" class="btn btn-primary" disabled="disabled">
+                    Send
+                </button>
+            </form>
+        </div>
     </body>
 </html>
