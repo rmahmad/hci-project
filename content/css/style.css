@@ -16,9 +16,10 @@ video {
 }
 
 #chat-form {
-    background: #eee;
+    background: #ccc;
     padding: 8px;
     width: 100%;
+    height: 60px;
     margin: 0px;
     position: absolute;
     bottom: 0;
@@ -41,7 +42,7 @@ video {
     margin: 0;
     padding: 0;
     margin-bottom: 44px;
-    max-height: 90%;
+    max-height: calc(100% - 60px);
     overflow-y: scroll;
 }
 
