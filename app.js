@@ -23,6 +23,9 @@ io.on('connection', function(socket) {
     socket.on('chat message', function(msg){
         io.emit('chat message', msg);
     });
+    socket.on('time signal', function(time) {
+        socket.broadcast.emit('signal', time);
+    });
 });
 
 http.listen(8888, function(){

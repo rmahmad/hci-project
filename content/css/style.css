@@ -57,3 +57,8 @@ video {
 .system-message {
     font-style: italic;
 }
+
+.signal-message {
+    color: green;
+    font-style: italic;
+}

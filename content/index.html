@@ -16,7 +16,13 @@
         });
         socket.on('disconnected', function(msg) {
             $('#messages').append($('<li class="system-message">').text(msg));
-        })
+        });
+        socket.on('signal', function(time) {
+            time = time.toFixed(0);
+            minutes = Math.floor(time/60);
+            seconds = time%60;
+            $('#messages').append($('<li class="signal-message">').text('Your partner is signaling to view the video at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click this message'));
+        });
 
         $(document).ready(function() {
             $('#chat-form').keyup(function() {
@@ -34,6 +40,12 @@
                 movie.currentTime += 10;
             });
 
+            $('#signal-button').click(function() {
+                var video = document.getElementById("movie");
+                var time = movie.currentTime;
+                socket.emit('time signal', time);
+            });
+
             $('form').submit(function(){
                 socket.emit('chat message', $('#chat-message-box').val());
                 $('#chat-message-box').val('');
@@ -48,7 +60,8 @@
             <video id="movie" controls>
                 <source src="assets/movie.mp4" type="video/mp4">
             </video>
-            <button id='skip-button' type='button'>Skip 10 seconds</button>
+            <button id="skip-button" type="button">Skip 10 seconds</button>
+            <button id="signal-button" class="btn btn-warning">Look at me I'm a button</button>
         </div>
         <div id="chat-area" class="col-md-4">
             <ul id="messages"></ul>
