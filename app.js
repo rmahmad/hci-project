@@ -18,7 +18,7 @@ io.on('connection', function(socket) {
     }
     socket.on('disconnect', function(socket) {
         users--;
-//        socket.emit('disconnected', 'Your partner has disconnected')
+        io.emit('disconnected', 'Your partner has disconnected')
     });
     socket.on('chat message', function(msg){
         io.emit('chat message', msg);

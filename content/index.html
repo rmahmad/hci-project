@@ -13,6 +13,9 @@
         });
         socket.on('connected', function(msg) {
             $('#messages').append($('<li class="system-message">').text(msg));
+        });
+        socket.on('disconnected', function(msg) {
+            $('#messages').append($('<li class="system-message">').text(msg));
         })
 
         $(document).ready(function() {
