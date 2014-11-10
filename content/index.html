@@ -21,10 +21,16 @@
             time = time.toFixed(0);
             minutes = Math.floor(time/60);
             seconds = time%60;
-            $('#messages').append($('<li class="signal-message">').text('Your partner is signaling to view the video at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click this message'));
+            $('#messages').append($('<li name="' + time + '" class="signal-message">').text('Your partner is signaling you to view the video at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click this message.'));
         });
 
         $(document).ready(function() {
+            $('#messages').on('click', 'li.signal-message', function() {
+                var video = document.getElementById("movie");
+                var time = $(this).attr('name');
+                video.currentTime = time;
+            });
+
             $('#chat-form').keyup(function() {
                 if($('#chat-message-box').val() != '') {
                     $('#chat-send-button').removeAttr('disabled');
@@ -46,7 +52,7 @@
                 socket.emit('time signal', time);
             });
 
-            $('form').submit(function(){
+            $('form').submit(function() {
                 socket.emit('chat message', $('#chat-message-box').val());
                 $('#chat-message-box').val('');
                 $('#chat-send-button').attr('disabled', 'disabled');
@@ -64,7 +70,7 @@
             <button id="signal-button" class="btn btn-warning">Look at me I'm a button</button>
         </div>
         <div id="chat-area" class="col-md-4">
-            <ul id="messages"></ul>
+            <ul id="messages" class="messages"></ul>
             <form id="chat-form" action="">
                 <input id="chat-message-box" autocomplete="off" />
                 <button id="chat-send-button" class="btn btn-primary" disabled="disabled">

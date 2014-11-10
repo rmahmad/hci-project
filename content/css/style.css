@@ -16,7 +16,7 @@ video {
 }
 
 #chat-form {
-    background: #ccc;
+    background: #ddd;
     padding: 8px;
     width: 100%;
     height: 60px;
@@ -51,7 +51,7 @@ video {
 }
 
 #messages li:nth-child(odd) {
-    background: #eee;
+    background: #bbb;
 }
 
 .system-message {
@@ -61,4 +61,9 @@ video {
 .signal-message {
     color: green;
     font-style: italic;
+}
+
+.signal-message:hover {
+    background: #eee;
+    cursor: pointer;
 }
