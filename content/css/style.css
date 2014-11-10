@@ -50,20 +50,20 @@ video {
     padding: 5px 10px;
 }
 
-#messages li:nth-child(odd) {
+#messages li.partner-message {
     background: #bbb;
 }
 
-.system-message {
+#messages li..system-message {
     font-style: italic;
 }
 
-.signal-message {
+#messages li..signal-message {
     color: green;
     font-style: italic;
 }
 
-.signal-message:hover {
+#messages li..signal-message:hover {
     background: #eee;
     cursor: pointer;
 }

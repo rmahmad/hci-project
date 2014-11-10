@@ -7,9 +7,18 @@
         <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
         <script type="text/javascript">
         var socket = io();
+        var id = -1;
         socket.on('chat message', function(msg) {
-            $('#messages').append($('<li>').text(msg));
-            $("#messages").scrollTop($("#messages")[0].scrollHeight);
+            if(msg.id == id) {
+                console.log('hello');
+                $('#messages').append($('<li>').text(msg.msg));
+                $("#messages").scrollTop($("#messages")[0].scrollHeight);
+            }
+            else {
+                console.log('g\'day');
+                $('#messages').append($('<li class="partner-message">').text(msg.msg));
+                $("#messages").scrollTop($("#messages")[0].scrollHeight);
+            }
         });
         socket.on('connected', function(msg) {
             $('#messages').append($('<li class="system-message">').text(msg));
@@ -22,6 +31,10 @@
             minutes = Math.floor(time/60);
             seconds = time%60;
             $('#messages').append($('<li name="' + time + '" class="signal-message">').text('Your partner is signaling you to view the video at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click this message.'));
+        });
+        socket.on('user-id', function(val) {            
+            id = val;
+            console.log('id ' + id);
         });
 
         $(document).ready(function() {
@@ -53,7 +66,7 @@
             });
 
             $('form').submit(function() {
-                socket.emit('chat message', $('#chat-message-box').val());
+                socket.emit('chat message', {'id': id, 'msg': $('#chat-message-box').val()});
                 $('#chat-message-box').val('');
                 $('#chat-send-button').attr('disabled', 'disabled');
                 return false;
