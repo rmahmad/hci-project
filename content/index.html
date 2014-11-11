@@ -10,32 +10,40 @@
         var id = -1;
         socket.on('chat message', function(msg) {
             if(msg.id == id) {
-                console.log('hello');
-                $('#messages').append($('<li>').text(msg.msg));
+                if($('#messages li:last-child').attr('class') != 'self-message') {
+                    $('#messages').append($('<li class=self-message>').append($('<b>').text("You")));
+                }
+                $('#messages').append($('<li class=self-message>').text(msg.msg));
                 $("#messages").scrollTop($("#messages")[0].scrollHeight);
             }
             else {
-                console.log('g\'day');
+                if($('#messages li:last-child').attr('class') != 'partner-message') {
+                    $('#messages').append($('<li class=partner-message>').append($('<b>').text("Your Partner")));
+                }
                 $('#messages').append($('<li class="partner-message">').text(msg.msg));
                 $("#messages").scrollTop($("#messages")[0].scrollHeight);
             }
         });
+
         socket.on('connected', function(msg) {
             $('#messages').append($('<li class="system-message">').text(msg));
         });
+
         socket.on('disconnected', function(msg) {
             $('#messages').append($('<li class="system-message">').text(msg));
         });
+
         socket.on('signal', function(time) {
             time = time.toFixed(0);
             minutes = Math.floor(time/60);
             seconds = time%60;
             $('#messages').append($('<li name="' + time + '" class="signal-message">').text('Your partner is signaling you to view the video at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click this message.'));
         });
+
         socket.on('user-id', function(val) {            
             id = val;
-            console.log('id ' + id);
         });
+
 
         $(document).ready(function() {
             $('#messages').on('click', 'li.signal-message', function() {
@@ -51,12 +59,6 @@
                 else {
                     $('#chat-send-button').attr('disabled', 'disabled');
                 }
-            });
-
-            $('#skip-button').click(function() {
-                video = document.getElementById("movie");
-                console.log(movie.currentTime);
-                movie.currentTime += 10;
             });
 
             $('#signal-button').click(function() {
@@ -79,7 +81,6 @@
             <video id="movie" controls>
                 <source src="assets/movie.mp4" type="video/mp4">
             </video>
-            <button id="skip-button" type="button">Skip 10 seconds</button>
             <button id="signal-button" class="btn btn-warning">Look at me I'm a button</button>
         </div>
         <div id="chat-area" class="col-md-4">

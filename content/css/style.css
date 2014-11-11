@@ -43,7 +43,7 @@ video {
     padding: 0;
     margin-bottom: 44px;
     max-height: calc(100% - 60px);
-    overflow-y: scroll;
+    overflow: auto;
 }
 
 #messages li {
@@ -51,19 +51,25 @@ video {
 }
 
 #messages li.partner-message {
-    background: #bbb;
+    background: rgb(208,221,238);
 }
 
-#messages li..system-message {
+#messages li.self-message {
+    background: #fff;
+}
+
+#messages li.system-message {
     font-style: italic;
+    font-weight: bold;
 }
 
-#messages li..signal-message {
+#messages li.signal-message {
     color: green;
     font-style: italic;
+    font-weight: bold;
 }
 
-#messages li..signal-message:hover {
+#messages li.signal-message:hover {
     background: #eee;
     cursor: pointer;
 }
