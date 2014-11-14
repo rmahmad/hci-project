@@ -1,0 +1,11 @@
+#movie-area {
+    width:100%;
+}
+
+#movie {
+    display:block;
+    width: 1000px;
+    margin: 50px auto;
+}
+
+

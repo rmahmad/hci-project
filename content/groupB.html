@@ -1,0 +1,51 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/groupB.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script type="text/javascript" src="js/groupB.js"></script>
+</head>
+<body>
+    <!-- Modal -->
+    <div class="modal fade" id="tutorial-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Looks like this is your first time here...</h4>
+          </div>
+          <div class="modal-body">
+            So here are some quick pointers:
+          </div>
+          <div class="modal-footer">
+            <button id="close-modal-button" type="button" class="btn btn-success">Let's get started!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="content"  class="row">
+
+        <!-- Video -->
+        <div id="movie-area" class="col-md-8">
+            <video id="movie" controls>
+                <source src="assets/movie.mp4" type="video/mp4">
+            </video>
+            <button id="signal-button" class="btn btn-warning">Signal your partner!</button>
+        </div>
+
+        <!-- Chat -->
+        <div id="chat-area" class="col-md-4">
+            <ul id="messages" class="messages"></ul>
+            <form id="chat-form" action="">
+                <input id="chat-message-box" autocomplete="off" />
+                <button id="chat-send-button" class="btn btn-primary" disabled="disabled">
+                    Send
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
