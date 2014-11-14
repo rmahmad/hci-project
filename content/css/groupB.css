@@ -53,6 +53,7 @@ video {
 #messages li {
     padding: 5px 10px;
     max-width:100%;
+    word-wrap:break-word;
 }
 
 #messages li.partner-message {
