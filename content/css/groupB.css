@@ -11,6 +11,10 @@ video {
     width: 100%;
 }
 
+#signal-button {
+    margin-top:5px;
+}
+
 #chat-area {
     border-left: 1px solid #aaa;
     height:100%;
