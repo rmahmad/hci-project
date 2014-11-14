@@ -39,11 +39,14 @@ socket.on('user-id', function(val) {
 
 
 $(document).ready(function() {
-    $('#tutorialModal').modal({
+    $('#tutorial-modal').modal({
         keyboard: true,
         backdrop: 'static'
     });
-    $('#tutorialModal').modal('show');
+    $('#tutorial-modal').modal('show');
+    $('#close-modal-button').click(function() {
+        $('#tutorial-modal').modal('hide');
+    });
 
     $('#messages').on('click', 'li.signal-message', function() {
         var video = document.getElementById("movie");

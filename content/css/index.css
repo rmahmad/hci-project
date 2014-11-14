@@ -1,0 +1,29 @@
+body {
+    background-color:rgb(208,221,238);
+}
+
+#content {
+    position:relative;
+	margin: auto;
+    margin-bottom:50px;
+    padding-top:50px;
+	text-align:center;
+    background:white;
+    width:750px;
+    padding-bottom:50px;
+    border-style:solid;
+	border-width:0px 1px 1px 1px;
+    border-radius:0px 0px 10px 10px;
+	border-color:black;
+}
+
+h1 {
+    margin-top:0px;
+}
+
+.group-button {
+    width:150px;
+    height:100px;
+    margin-top:50px;
+    margin:50px 30px 30px 30px;
+}
