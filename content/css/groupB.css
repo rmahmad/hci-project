@@ -3,8 +3,12 @@ body {
     width:100%;
 }
 
+#movie-area {
+    padding-right:0px;
+}
+
 video {
-    width: 75%;
+    width: 100%;
 }
 
 #chat-area {
@@ -48,6 +52,7 @@ video {
 
 #messages li {
     padding: 5px 10px;
+    max-width:100%;
 }
 
 #messages li.partner-message {
