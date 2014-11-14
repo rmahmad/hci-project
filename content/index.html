@@ -1,96 +1,12 @@
 <html>
     <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-        <script type="text/javascript">
-        var socket = io();
-        var id = -1;
-        socket.on('chat message', function(msg) {
-            if(msg.id == id) {
-                if($('#messages li:last-child').attr('class') != 'self-message') {
-                    $('#messages').append($('<li class=self-message>').append($('<b>').text("You")));
-                }
-                $('#messages').append($('<li class=self-message>').text(msg.msg));
-                $("#messages").scrollTop($("#messages")[0].scrollHeight);
-            }
-            else {
-                if($('#messages li:last-child').attr('class') != 'partner-message') {
-                    $('#messages').append($('<li class=partner-message>').append($('<b>').text("Your Partner")));
-                }
-                $('#messages').append($('<li class="partner-message">').text(msg.msg));
-                $("#messages").scrollTop($("#messages")[0].scrollHeight);
-            }
-        });
-
-        socket.on('connected', function(msg) {
-            $('#messages').append($('<li class="system-message">').text(msg));
-        });
-
-        socket.on('disconnected', function(msg) {
-            $('#messages').append($('<li class="system-message">').text(msg));
-        });
-
-        socket.on('signal', function(time) {
-            time = time.toFixed(0);
-            minutes = Math.floor(time/60);
-            seconds = time%60;
-            $('#messages').append($('<li name="' + time + '" class="signal-message">').text('Your partner is signaling you to view the video at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click this message.'));
-        });
-
-        socket.on('user-id', function(val) {            
-            id = val;
-        });
-
-
-        $(document).ready(function() {
-            $('#messages').on('click', 'li.signal-message', function() {
-                var video = document.getElementById("movie");
-                var time = $(this).attr('name');
-                video.currentTime = time;
-            });
-
-            $('#chat-form').keyup(function() {
-                if($('#chat-message-box').val() != '') {
-                    $('#chat-send-button').removeAttr('disabled');
-                }
-                else {
-                    $('#chat-send-button').attr('disabled', 'disabled');
-                }
-            });
-
-            $('#signal-button').click(function() {
-                var video = document.getElementById("movie");
-                var time = movie.currentTime;
-                socket.emit('time signal', time);
-            });
-
-            $('form').submit(function() {
-                socket.emit('chat message', {'id': id, 'msg': $('#chat-message-box').val()});
-                $('#chat-message-box').val('');
-                $('#chat-send-button').attr('disabled', 'disabled');
-                return false;
-            });
-        });
-        </script>
     </head>
-    <body class="row">
-        <div id="movie-area" class="col-md-8">
-            <video id="movie" controls>
-                <source src="assets/movie.mp4" type="video/mp4">
-            </video>
-            <button id="signal-button" class="btn btn-warning">Look at me I'm a button</button>
-        </div>
-        <div id="chat-area" class="col-md-4">
-            <ul id="messages" class="messages"></ul>
-            <form id="chat-form" action="">
-                <input id="chat-message-box" autocomplete="off" />
-                <button id="chat-send-button" class="btn btn-primary" disabled="disabled">
-                    Send
-                </button>
-            </form>
-        </div>
+    <body>
+        Hello! Here's a <a href="/viewer.html">link!</a>
     </body>
 </html>
