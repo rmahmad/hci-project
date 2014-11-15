@@ -26,13 +26,29 @@
       </div>
     </div>
 
+    <!-- Confirmation Modal -->
+    <div class="modal fade" id="confirmation-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="padding-bottom:50px">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Are you ready to take the quiz?</h4>
+          </div>
+          <div class="modal-footer">
+            <button id="close-confirmation-button" type="button" class="btn btn-default">No, I need some more time</button>
+            <a href="https://docs.google.com/a/eng.ucsd.edu/forms/d/1QZMiyiWow_coQFNxSy1jsAW8KLTdLDyORTdIu1VrfuI/viewform?usp=send_form" class="btn btn-success">Yep! Take me to the quiz</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="content"  class="row">
         <!-- Video -->
         <div id="movie-area" class="col-md-8">
             <video id="movie" controls>
                 <source src="assets/movie.mp4" type="video/mp4">
             </video>
-            <button id="finished-button" class="btn btn-success">Continue to quiz</button>
+            <button id="finished-button" class="btn btn-success" data-toggle="modal" data-target="#confirmation-modal">Continue to quiz</button>
         </div>
     </div>
 </body>

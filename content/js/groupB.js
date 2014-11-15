@@ -44,8 +44,11 @@ $(document).ready(function() {
         backdrop: 'static'
     });
     $('#tutorial-modal').modal('show');
-    $('#close-modal-button').click(function() {
+    $('#close-tutorial-button').click(function() {
         $('#tutorial-modal').modal('hide');
+    });
+    $('#close-confirmation-button').click(function() {
+        $('#confirmation-modal').modal('hide');
     });
 
     $('#messages').on('click', 'li.signal-message', function() {
