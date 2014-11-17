@@ -70,6 +70,10 @@ $(document).ready(function() {
         var video = document.getElementById("movie");
         var time = movie.currentTime;
         socket.emit('time signal', time);
+        time = time.toFixed(0);
+        minutes = Math.floor(time/60);
+        seconds = time%60;
+        $('#messages').append($('<li name="' + time + '" class="signal-message">').text('You signaled for your partner to view the video at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click this message.'));
     });
 
     $('form').submit(function() {
