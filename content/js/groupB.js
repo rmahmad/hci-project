@@ -69,7 +69,7 @@ $(document).ready(function() {
     $('#signal-button').click(function() {
         var video = document.getElementById("movie");
         var time = movie.currentTime;
-        socket.emit('time signal', time);
+        socket.emit('time signal', {'id': id, 'time': time});
         time = time.toFixed(0);
         minutes = Math.floor(time/60);
         seconds = time%60;
