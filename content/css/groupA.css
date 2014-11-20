@@ -1,16 +1,55 @@
 #movie-area {
-    width:100%;
+    padding-right:0px;
 }
 
-#movie {
-    display:block;
-    width: 1000px;
-    margin: auto;
-    margin-top:50px;
-    margin-bottom:20px;
+video {
+    width: 100%;
+}
+
+#marker-button {
+    margin-top:5px;
 }
 
 #finished-button {
-    display:block;
-    margin: auto;
+    margin-top:5px;
+    margin-right:10px;
+    float:right;
+}
+
+#markers {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 44px;
+    max-height: calc(100% - 60px);
+    overflow: auto;
+}
+
+#markers li {
+    padding: 5px 10px;
+    max-width:100%;
+    word-wrap:break-word;
+}
+
+#markers li.system-message {
+    font-style: italic;
+    font-weight: bold;
+}
+
+#no-marker-message {
+    color: green;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+#markers li.message {
+    color: green;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#markers li.message:hover {
+    background: #eee;
+    cursor: pointer;
 }

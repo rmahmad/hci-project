@@ -42,13 +42,25 @@
       </div>
     </div>
 
-    <div id="content"  class="row">
-        <!-- Video -->
-        <div id="movie-area" class="col-md-8">
-            <video id="movie" controls>
-                <source src="assets/movie.mp4" type="video/mp4">
-            </video>
-            <button id="finished-button" class="btn btn-success" data-toggle="modal" data-target="#confirmation-modal">Continue to quiz</button>
+    <div class="container-fluid">
+        <div id="content"  class="row">
+
+            <!-- Video -->
+            <div id="movie-area" class="col-md-8">
+                <video id="movie" controls>
+                    <source src="assets/movie.mp4" type="video/mp4">
+                </video>
+                <button id="marker-button" class="btn btn-warning">Drop marker</button>
+                <button id="finished-button" class="btn btn-success" data-toggle="modal" data-target="#confirmation-modal">Continue to quiz</button>
+            </div>
+
+                <!-- Markers -->
+            <div id="marker-area" class="col-md-4">
+                <ul id="markers" class="messages">
+                    <li class="system-message">Markers you have dropped:</li>
+                    <li id="no-marker-message">You don't have any markers! Drop some by clicking the yellow button in the bottom left</li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
