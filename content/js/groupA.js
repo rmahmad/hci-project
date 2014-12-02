@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     $('#marker-button').click(function() {
         var video = document.getElementById("movie");
-        var time = movie.currentTime;
+        var time = video.currentTime;
         time = time.toFixed(0);
         minutes = Math.floor(time/60);
         seconds = time%60;
