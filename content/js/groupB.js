@@ -51,6 +51,21 @@ $(document).ready(function() {
         $('#confirmation-modal').modal('hide');
     });
 
+    $('#tutorial-modal').on('hidden.bs.modal', function () {
+        var timer = 600;
+        var timerInterval = setInterval(function() {
+            $('#timer').text('Time left: ' + Math.floor(timer/60) + ':' + (timer%60 < 10 ? '0' + timer%60 : timer%60));
+            timer--;
+            if(timer === -1) {
+                clearInterval(timerInterval);
+                $('#timer-modal').modal({
+                    backdrop: 'static'
+                });
+                $('#timer-modal').modal('show');
+            }
+        }, 1000);
+    });
+
     $('#messages').on('click', 'li.signal-message', function() {
         var video = document.getElementById("movie");
         var time = $(this).attr('name');

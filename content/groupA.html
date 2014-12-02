@@ -10,14 +10,14 @@
 <body>
     <!-- Modal -->
     <div class="modal fade" id="tutorial-modal">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Looks like this is your first time here...</h4>
+            <h4 class="modal-title" id="myModalLabel">Welcome!</h4>
           </div>
           <div class="modal-body">
-            So here are some quick pointers:
+            <img id="help-pic" src="assets/groupa.png"></img>
           </div>
           <div class="modal-footer">
             <button id="close-tutorial-button" type="button" class="btn btn-success">Let's get started!</button>
@@ -42,11 +42,27 @@
       </div>
     </div>
 
+    <!-- Ran Out of Time Modal -->
+    <div class="modal fade" id="timer-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Sorry!</h4>
+          </div>
+          <div class="modal-body">You ran out of time. Click continue to take the quiz</div>
+          <div class="modal-footer">
+            <a href="https://docs.google.com/a/eng.ucsd.edu/forms/d/1QZMiyiWow_coQFNxSy1jsAW8KLTdLDyORTdIu1VrfuI/viewform?usp=send_form" class="btn btn-success">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container-fluid">
         <div id="content"  class="row">
 
             <!-- Video -->
             <div id="movie-area" class="col-md-8">
+                <div id="timer">Time left: 10:00</div>
                 <video id="movie" controls>
                     <source src="assets/movie.mp4" type="video/mp4">
                 </video>

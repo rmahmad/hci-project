@@ -26,6 +26,12 @@ $(document).ready(function() {
         }
     });
 
+    $('#messages').on('click', 'li.signal-message', function() {
+        var video = document.getElementById("movie");
+        var time = $(this).attr('name');
+        video.currentTime = time;
+    });
+
     $('#signal-button').click(function() {
         var video = document.getElementById("movie");
         var time = movie.currentTime;

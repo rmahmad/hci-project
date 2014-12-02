@@ -89,3 +89,7 @@ video {
     background: #eee;
     cursor: pointer;
 }
+
+#help-pic {
+    max-width: 100%;
+}

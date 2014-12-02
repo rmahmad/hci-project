@@ -89,3 +89,14 @@ video {
     background: #eee;
     cursor: pointer;
 }
+
+#help-pic {
+    max-width: 100%;
+}
+
+#timer {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 0 10px 0;
+}
