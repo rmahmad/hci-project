@@ -31,18 +31,35 @@ $(document).ready(function() {
         }, 1000);
     });
 
+    $('#chat-form').keyup(function() {
+        if($('#chat-message-box').val() != '') {
+            $('#chat-send-button').removeAttr('disabled');
+        }
+        else {
+            $('#chat-send-button').attr('disabled', 'disabled');
+        }
+    });
+
+    $('form').submit(function() {
+        $('#messages').append($('<li class=self-message>').text($('#chat-message-box').val()));
+        $("#messages").scrollTop($("#messages")[0].scrollHeight);
+        $('#chat-message-box').val('');
+        $('#chat-send-button').attr('disabled', 'disabled');
+        return false;
+    });
+
     $('#marker-button').click(function() {
         var video = document.getElementById("movie");
         var time = video.currentTime;
         time = time.toFixed(0);
         minutes = Math.floor(time/60);
         seconds = time%60;
-        $('#markers').append($('<li name="' + time + '" class="message">').text('You dropped a marker at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click here.'));
+        $('#messages').append($('<li name="' + time + '" class="signal-message">').text('You dropped a marker at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click here.'));
         $('#no-marker-message').hide();
         markers++;
     });
 
-    $('#markers').on('click', 'li.message', function() {
+    $('#messages').on('click', 'li.signal-message', function() {
         var video = document.getElementById("movie");
         var time = $(this).attr('name');
         video.currentTime = time;

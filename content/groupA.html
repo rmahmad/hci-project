@@ -70,12 +70,15 @@
                 <button id="finished-button" class="btn btn-success" data-toggle="modal" data-target="#confirmation-modal">Continue to quiz</button>
             </div>
 
-                <!-- Markers -->
-            <div id="marker-area" class="col-md-4">
-                <ul id="markers" class="messages">
-                    <li class="system-message">Markers you have dropped:</li>
-                    <li id="no-marker-message">You don't have any markers! Drop some by clicking the yellow button in the bottom left</li>
-                </ul>
+            <!-- Note Area -->
+            <div id="chat-area" class="col-md-4">
+                <ul id="messages" class="messages"></ul>
+                <form id="chat-form" action="">
+                    <input id="chat-message-box" autocomplete="off" />
+                    <button id="chat-send-button" class="btn btn-primary" disabled="disabled">
+                        Send
+                    </button>
+                </form>
             </div>
         </div>
     </div>
