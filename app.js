@@ -72,7 +72,6 @@ io.on('connection', function(socket) {
     });
 
     socket.on('ready', function(msg) {
-        console.log(readyUsers);
         if(readyUsers < 2) {
             readyUsers++;
             if(readyUsers === 2) {
