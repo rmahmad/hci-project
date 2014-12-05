@@ -13,6 +13,8 @@ var userId = 0;
 var currentUsers = 0;
 var numChats = [0, 0];
 var numSignals = [0, 0];
+var timer = 10;
+
 io.on('connection', function(socket) {
     var startDate = new Date();
     socket.emit('user-id', userId);
@@ -66,6 +68,26 @@ io.on('connection', function(socket) {
         }
         socket.broadcast.emit('signal', msg.time);
     });
+
+    socket.on('ready', function(msg)) {
+        var intro = true;
+        var timerInterval = setInterval(function() {
+            if(intro) {
+                timer--;
+                if(timer === 0) {
+                    timer = 600;
+                    intro = false;
+                }
+            }
+            else {
+                timer--;
+                if(timer === -1) {
+                    clearInterval(timerInterval);
+                }
+            }
+            io.emit('timer', {'timer': timer, 'intro': intro});
+        }, 1000);
+    }
 });
 
 http.listen(process.env.PORT || 8888, function(){

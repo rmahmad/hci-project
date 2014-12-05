@@ -37,6 +37,25 @@ socket.on('user-id', function(val) {
     id = val;
 });
 
+socket.on('timer', function(data) {
+    if(data.intro) {
+        $('#timer').text('Introduction time left: ' + Math.floor(data.timer/60) + ':' + (data.timer%60 < 10 ? '0' + data.timer%60 : data.timer%60));
+        $('#intro-overlay').hide(1000);
+        $('#movie').attr('controls', true);
+        $('#messages').append($('<li class="signal-message">').text('The introduction time has ended! Click the play button on the video to begin watching the video.'));
+    }
+    else {
+        $('#timer').text('Time left: ' + Math.floor(data.timer/60) + ':' + (data.timer%60 < 10 ? '0' + data.timer%60 : data.timer%60));
+        if(data.timer === -1) {
+            var video = document.getElementById("movie");
+            video.pause();
+            $('#movie').attr('controls', false);
+            $('#timer-modal').modal({
+                backdrop: 'static'
+            });
+            $('#timer-modal').modal('show');
+        }
+});
 
 $(document).ready(function() {
     $('#tutorial-modal').modal({
@@ -52,24 +71,37 @@ $(document).ready(function() {
     });
 
     $('#tutorial-modal').on('hidden.bs.modal', function () {
-        var timer = 600;
+        var timer = 10;
+        var intro = true;
         var timerInterval = setInterval(function() {
-            $('#timer').text('Time left: ' + Math.floor(timer/60) + ':' + (timer%60 < 10 ? '0' + timer%60 : timer%60));
-            timer--;
-            if(timer === -1) {
-                clearInterval(timerInterval);
-                var video = document.getElementById("movie");
-                video.pause();
-                $('#timer-modal').modal({
-                    backdrop: 'static'
-                });
-                $('#timer-modal').modal('show');
+            if(intro) {
+                timer--;
+                $('#timer').text('Introduction time left: ' + Math.floor(timer/60) + ':' + (timer%60 < 10 ? '0' + timer%60 : timer%60));
+                if(timer === 0) {
+                    timer = 600;
+                    intro = false;
+                    $('#intro-overlay').hide(1000);
+                    $('#movie').attr('controls', true);
+                    $('#messages').append($('<li class="signal-message">').text('The introduction time has ended! Click the play button on the video to begin watching the video.'));
+                }
+            }
+            else {
+                $('#timer').text('Time left: ' + Math.floor(timer/60) + ':' + (timer%60 < 10 ? '0' + timer%60 : timer%60));
+                timer--;
+                if(timer === -1) {
+                    clearInterval(timerInterval);
+                    var video = document.getElementById("movie");
+                    video.pause();
+                    $('#timer-modal').modal({
+                        backdrop: 'static'
+                    });
+                    $('#timer-modal').modal('show');
+                }
             }
         }, 1000);
     });
 
     $('#messages').on('click', 'li.signal-message', function() {
-        var video = document.getElementById("movie");
         var time = $(this).attr('name');
         video.currentTime = time;
     });
