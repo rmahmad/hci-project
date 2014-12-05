@@ -1,5 +1,6 @@
 var socket = io();
 var id = -1;
+var ready = false;
 
 socket.on('chat message', function(msg) {
     if(msg.id == id) {
@@ -75,7 +76,10 @@ $(document).ready(function() {
     });
 
     $('#tutorial-modal').on('hidden.bs.modal', function () {
-       socket.emit('ready');
+        if(!ready) {
+            socket.emit('ready');
+            ready = true;
+        }
     });
 
     $('#messages').on('click', 'li.signal-message', function() {
