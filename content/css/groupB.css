@@ -11,8 +11,9 @@ video {
     width: 100%;
 }
 
-#signal-button {
+.control-buttons {
     margin-top:5px;
+    margin-bottom:5px;
 }
 
 #finished-button {

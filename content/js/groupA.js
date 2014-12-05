@@ -23,6 +23,8 @@ $(document).ready(function() {
             timer--;
             if(timer === -1) {
                 clearInterval(timerInterval);
+                var video = document.getElementById("movie");
+                video.pause();
                 $('#timer-modal').modal({
                     backdrop: 'static'
                 });
@@ -63,9 +65,5 @@ $(document).ready(function() {
         var video = document.getElementById("movie");
         var time = $(this).attr('name');
         video.currentTime = time;
-    });
-
-    $('#finished-button').click(function() {
-        console.log(markers);
     });
 });

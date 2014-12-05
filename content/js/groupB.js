@@ -58,6 +58,8 @@ $(document).ready(function() {
             timer--;
             if(timer === -1) {
                 clearInterval(timerInterval);
+                var video = document.getElementById("movie");
+                video.pause();
                 $('#timer-modal').modal({
                     backdrop: 'static'
                 });

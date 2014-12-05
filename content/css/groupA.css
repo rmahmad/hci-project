@@ -6,10 +6,6 @@ video {
     width: 100%;
 }
 
-#marker-button {
-    margin-top:5px;
-}
-
 #finished-button {
     margin-top:5px;
     margin-right:10px;
@@ -108,4 +104,9 @@ video {
 #messages li.signal-message:hover {
     background: #eee;
     cursor: pointer;
+}
+
+.control-buttons {
+    margin-top:5px;
+    margin-bottom:5px;
 }
