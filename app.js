@@ -13,7 +13,7 @@ var userId = 0;
 var currentUsers = 0;
 var numChats = [0, 0];
 var numSignals = [0, 0];
-var timer = 15;
+var timer = 60;
 var readyUsers = 0;
 
 io.on('connection', function(socket) {
