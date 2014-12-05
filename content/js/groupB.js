@@ -3,19 +3,21 @@ var id = -1;
 var ready = false;
 
 socket.on('chat message', function(msg) {
-    if(msg.id == id) {
-        if($('#messages li:last-child').attr('class') != 'self-message') {
-            $('#messages').append($('<li class=self-message>').append($('<b>').text("You")));
+    if(ready) {
+        if(msg.id == id) {
+            if($('#messages li:last-child').attr('class') != 'self-message') {
+                $('#messages').append($('<li class=self-message>').append($('<b>').text("You")));
+            }
+            $('#messages').append($('<li class=self-message>').text(msg.msg));
+            $("#messages").scrollTop($("#messages")[0].scrollHeight);
         }
-        $('#messages').append($('<li class=self-message>').text(msg.msg));
-        $("#messages").scrollTop($("#messages")[0].scrollHeight);
-    }
-    else {
-        if($('#messages li:last-child').attr('class') != 'partner-message') {
-            $('#messages').append($('<li class=partner-message>').append($('<b>').text("Your Partner")));
+        else {
+            if($('#messages li:last-child').attr('class') != 'partner-message') {
+                $('#messages').append($('<li class=partner-message>').append($('<b>').text("Your Partner")));
+            }
+            $('#messages').append($('<li class="partner-message">').text(msg.msg));
+            $("#messages").scrollTop($("#messages")[0].scrollHeight);
         }
-        $('#messages').append($('<li class="partner-message">').text(msg.msg));
-        $("#messages").scrollTop($("#messages")[0].scrollHeight);
     }
 });
 

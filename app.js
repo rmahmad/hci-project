@@ -73,6 +73,7 @@ io.on('connection', function(socket) {
 
     socket.on('ready', function(msg) {
         if(readyUsers < 2) {
+            console.log('User ready');
             readyUsers++;
             if(readyUsers === 2) {
                 io.emit('connected', 'Your partner has connected');
@@ -84,7 +85,7 @@ io.on('connection', function(socket) {
                 if(intro) {
                     timer--;
                     if(timer === 0) {
-                        timer = 15;
+                        timer = 600;
                         intro = false;
                     }
                 }
