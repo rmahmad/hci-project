@@ -63,7 +63,7 @@
             <!-- Video -->
             <div id="movie-area" class="col-md-8">
                 <img id="intro-overlay" src="assets/intro.png"></img>
-                <div id="timer">Time left: 10:00</div>
+                <div id="timer">Introduction time left: 1:00</div>
                 <video id="movie">
                     <source src="assets/movie.mp4" type="video/mp4">
                 </video>
@@ -76,7 +76,9 @@
 
             <!-- Chat -->
             <div id="chat-area" class="col-md-4">
-                <ul id="messages" class="messages"></ul>
+                <ul id="messages" class="messages">
+                    <li class="system-message">Waiting for your partner....</li>
+                </ul>
                 <form id="chat-form" action="">
                     <input id="chat-message-box" autocomplete="off" />
                     <button id="chat-send-button" class="btn btn-primary" disabled="disabled">

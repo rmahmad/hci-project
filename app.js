@@ -13,7 +13,8 @@ var userId = 0;
 var currentUsers = 0;
 var numChats = [0, 0];
 var numSignals = [0, 0];
-var timer = 10;
+var timer = 15;
+var readyUsers = 0;
 
 io.on('connection', function(socket) {
     var startDate = new Date();
@@ -23,10 +24,10 @@ io.on('connection', function(socket) {
     if(currentUsers == 2) {
         console.log('------------------- Session began -------------------');
         console.log('Session began at ' + startDate.getHours() + ':' + startDate.getMinutes() + ':' + startDate.getSeconds());
-        io.emit('connected', 'Your partner has connected');
     }
     socket.on('disconnect', function(socket) {
         currentUsers--;
+        readyUsers--;
         io.emit('disconnected', 'Your partner has disconnected');
         if(currentUsers == 0) {
             endDate = new Date();
@@ -42,6 +43,7 @@ io.on('connection', function(socket) {
             console.log('Number of signals:\n\tUser ' + user1 + ': ' + numSignals[0] + '\n\tUser ' + user2 + ': ' + numSignals[1] + '\n\tTotal: ' + signals);
             numChats = [0, 0];
             numSignals = [0, 0];
+            timer = 60;
         }
     });
     socket.on('chat message', function(msg){
@@ -69,25 +71,37 @@ io.on('connection', function(socket) {
         socket.broadcast.emit('signal', msg.time);
     });
 
-    socket.on('ready', function(msg)) {
-        var intro = true;
-        var timerInterval = setInterval(function() {
-            if(intro) {
-                timer--;
-                if(timer === 0) {
-                    timer = 600;
-                    intro = false;
-                }
+    socket.on('ready', function(msg) {
+        console.log(readyUsers);
+        if(readyUsers < 2) {
+            readyUsers++;
+            if(readyUsers === 2) {
+                io.emit('connected', 'Your partner has connected');
             }
-            else {
-                timer--;
-                if(timer === -1) {
+        }
+        if(readyUsers === 2) {
+            var intro = true;
+            var timerInterval = setInterval(function() {
+                if(intro) {
+                    timer--;
+                    if(timer === 0) {
+                        timer = 15;
+                        intro = false;
+                    }
+                }
+                else {
+                    timer--;
+                    if(timer === -1) {
+                        clearInterval(timerInterval);
+                    }
+                }
+                if(readyUsers < 2) {
                     clearInterval(timerInterval);
                 }
-            }
-            io.emit('timer', {'timer': timer, 'intro': intro});
-        }, 1000);
-    }
+                io.emit('timer', {'timer': timer, 'intro': intro});
+            }, 1000);
+        }
+    });
 });
 
 http.listen(process.env.PORT || 8888, function(){
