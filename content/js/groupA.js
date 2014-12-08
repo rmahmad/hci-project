@@ -16,7 +16,7 @@ $(document).ready(function() {
         $('#confirmation-modal').modal('hide');
     });
 
-    $('#tutorial-modal').on('hidden.bs.modal', function () {
+    $('#tutorial-modal-5').on('hidden.bs.modal', function () {
         var timer = 600;
         var timerInterval = setInterval(function() {
             $('#timer').text('Time left: ' + Math.floor(timer/60) + ':' + (timer%60 < 10 ? '0' + timer%60 : timer%60));

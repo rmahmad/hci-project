@@ -121,3 +121,7 @@ video {
     margin-bottom:20px;
     max-width: 100%;
 }
+
+.modal {
+    overflow-y: scroll;
+}

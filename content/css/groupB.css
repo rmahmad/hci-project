@@ -114,3 +114,7 @@ video {
     margin-right: auto;
     margin-bottom:20px;
 }
+
+.modal {
+    overflow-y: scroll;
+}
