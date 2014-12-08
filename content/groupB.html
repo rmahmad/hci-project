@@ -8,53 +8,72 @@
     <script type="text/javascript" src="js/groupB.js"></script>
 </head>
 <body>
+    <!-- Introduction Modal -->
+    <div class="modal fade" id="intro-modal">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Welcome!</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Alright! Now you are ready for the real video. You will have a total of 15 minutes to watch and explore the 10 minute video, after which time you will be taken to the quiz. If you finish before the 15 minutes is up, you can begin the quiz early. If you forget anything about the platform at any point, click the "Instructions" button at the bottom of the screen to get some pointers.</p>
+                    <p>Before starting the video, though, you will have a minute to get acquainted with your partner. Feel free to introduce yourself and talk about some common interests!</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="close-intro-button" type="button" class="btn btn-success">Got it!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Tutorial Modal -->
     <div class="modal fade" id="tutorial-modal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Welcome!</h4>
-          </div>
-          <div class="modal-body">
-            <img id="help-pic" src="assets/groupb.png"></img>
-          </div>
-          <div class="modal-footer">
-            <button id="close-tutorial-button" type="button" class="btn btn-success">Got it!</button>
-          </div>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Welcome!</h4>
+                </div>
+                <div class="modal-body">
+                    <img id="help-pic" src="assets/groupb.png"></img>
+                </div>
+                <div class="modal-footer">
+                    <button id="close-tutorial-button" type="button" class="btn btn-success">Got it!</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <!-- Confirmation Modal -->
     <div class="modal fade" id="confirmation-modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header" style="padding-bottom:50px">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Are you ready to take the quiz?</h4>
-          </div>
-          <div class="modal-footer">
-            <button id="close-confirmation-button" type="button" class="btn btn-default">No, I need some more time</button>
-            <a href="https://docs.google.com/a/eng.ucsd.edu/forms/d/1QZMiyiWow_coQFNxSy1jsAW8KLTdLDyORTdIu1VrfuI/viewform?usp=send_form" class="btn btn-success">Yep! Take me to the quiz</a>
-          </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="padding-bottom:50px">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Are you ready to take the quiz?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button id="close-confirmation-button" type="button" class="btn btn-default">No, I need some more time</button>
+                    <a href="https://docs.google.com/forms/d/1QZMiyiWow_coQFNxSy1jsAW8KLTdLDyORTdIu1VrfuI/viewform?usp=send_form" class="btn btn-success">Yep! Take me to the quiz</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <!-- Ran Out of Time Modal -->
     <div class="modal fade" id="timer-modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Sorry!</h4>
-          </div>
-          <div class="modal-body">You ran out of time. Click continue to take the quiz</div>
-          <div class="modal-footer">
-            <a href="https://docs.google.com/a/eng.ucsd.edu/forms/d/1QZMiyiWow_coQFNxSy1jsAW8KLTdLDyORTdIu1VrfuI/viewform?usp=send_form" class="btn btn-success">Continue</a>
-          </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Sorry!</h4>
+                </div>
+                <div class="modal-body">You ran out of time. Click continue to take the quiz</div>
+                <div class="modal-footer">
+                    <a href="https://docs.google.com/forms/d/1QZMiyiWow_coQFNxSy1jsAW8KLTdLDyORTdIu1VrfuI/viewform?usp=send_form" class="btn btn-success">Continue</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <div class="container-fluid">

@@ -68,19 +68,22 @@ socket.on('timer', function(data) {
 });
 
 $(document).ready(function() {
-    $('#tutorial-modal').modal({
+    $('#intro-modal').modal({
         keyboard: true,
         backdrop: 'static'
     });
-    $('#tutorial-modal').modal('show');
+    $('#intro-modal').modal('show');
     $('#close-tutorial-button').click(function() {
         $('#tutorial-modal').modal('hide');
     });
     $('#close-confirmation-button').click(function() {
         $('#confirmation-modal').modal('hide');
     });
+    $('#close-intro-button').click(function() {
+        $('#intro-modal').modal('hide');
+    });
 
-    $('#tutorial-modal').on('hidden.bs.modal', function () {
+    $('#intro-modal').on('hidden.bs.modal', function () {
         if(!ready) {
             socket.emit('ready');
             ready = true;
