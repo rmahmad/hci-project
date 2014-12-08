@@ -57,6 +57,7 @@ $(document).ready(function() {
         minutes = Math.floor(time/60);
         seconds = time%60;
         $('#messages').append($('<li name="' + time + '" class="signal-message">').text('You dropped a marker at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click here.'));
+        $("#messages").scrollTop($("#messages")[0].scrollHeight);
         $('#no-marker-message').hide();
         markers++;
     });

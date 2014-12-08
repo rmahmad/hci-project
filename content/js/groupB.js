@@ -34,7 +34,9 @@ socket.on('signal', function(time) {
     minutes = Math.floor(time/60);
     seconds = time%60;
     $('#messages').append($('<li name="' + time + '" class="signal-message">').text('Your partner is signaling you to view the video at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click this message.'));
+    $("#messages").scrollTop($("#messages")[0].scrollHeight);
 });
+
 
 socket.on('user-id', function(val) {            
     id = val;
@@ -49,6 +51,7 @@ socket.on('timer', function(data) {
             $('#intro-overlay').hide(500);
             $('#movie').attr('controls', true);
             $('#messages').append($('<li class="signal-message">').text('The introduction time has ended! Click the play button on the video to begin watching the video.'));
+            $("#messages").scrollTop($("#messages")[0].scrollHeight);
         }
         if(data.timer === -1) {
             data.timer = 0;
@@ -85,6 +88,7 @@ $(document).ready(function() {
     });
 
     $('#messages').on('click', 'li.signal-message', function() {
+        var video = document.getElementById("movie");
         var time = $(this).attr('name');
         video.currentTime = time;
     });
@@ -106,6 +110,7 @@ $(document).ready(function() {
         minutes = Math.floor(time/60);
         seconds = time%60;
         $('#messages').append($('<li name="' + time + '" class="signal-message">').text('You signaled for your partner to view the video at time ' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds) + '. To view the video at that time, click this message.'));
+        $("#messages").scrollTop($("#messages")[0].scrollHeight);
     });
 
     $('form').submit(function() {
