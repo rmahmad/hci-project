@@ -1,15 +1,10 @@
-body {
-    font: 13px Helvetica, Arial;
-    width:100%;
-}
-
 #movie-area {
     padding-right:0px;
 }
 
 video {
     margin: 0 auto;
-    height: calc(100% - 82px);
+    height: calc(100% - 86px);
     width: 100%;
     max-width: 100%;
 }
