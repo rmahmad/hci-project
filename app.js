@@ -2,12 +2,25 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+app.use(express.static('content'));
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({
+  extended: true
+})); 
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/content/index.html');
-})
+});
 
-app.use(express.static('content'));
+app.post('/notelog', function(req, res) {
+//    console.log(req.body)
+    console.log('Notes taken by user: ' + req.body.lines);
+    console.log('Markers placed by user: ' + req.body.markers);
+    if(req.body.lines && req.body.markers)
+        res.sendStatus(200);
+    else
+        res.sendStatus(400);
+});
 
 var userId = 0;
 var currentUsers = 0;

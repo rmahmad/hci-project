@@ -1,6 +1,8 @@
 var markers = 0;
+var lines = 0;
 
 $(document).ready(function() {
+    
     $('#tutorial-modal').modal({
         keyboard: true,
         backdrop: 'static'
@@ -23,11 +25,16 @@ $(document).ready(function() {
             timer--;
             if(timer === -1) {
                 clearInterval(timerInterval);
-                var video = document.getElementById("movie");
+                var video = document.getElementById('movie');
                 video.pause();
                 $('#timer-modal').modal({
                     backdrop: 'static'
                 });
+                var data = {
+                    'lines': lines,
+                    'markers': markers
+                };
+                $.post('http://127.0.0.1:8888/notelog', data, null, 'json');
                 $('#timer-modal').modal('show');
             }
         }, 1000);
@@ -43,6 +50,7 @@ $(document).ready(function() {
     });
 
     $('form').submit(function() {
+        lines++;
         $('#messages').append($('<li class=self-message>').text($('#chat-message-box').val()));
         $("#messages").scrollTop($("#messages")[0].scrollHeight);
         $('#chat-message-box').val('');
@@ -66,5 +74,15 @@ $(document).ready(function() {
         var video = document.getElementById("movie");
         var time = $(this).attr('name');
         video.currentTime = time;
+    });
+
+    $('#exit-button').click(function() {
+        data = {
+            'lines': lines,
+            'markers': markers
+        };
+        $.post( 'http://127.0.0.1:8888/notelog', data, null, 'json');
+        window.location.href = "https://docs.google.com/a/eng.ucsd.edu/forms/d/1QZMiyiWow_coQFNxSy1jsAW8KLTdLDyORTdIu1VrfuI/viewform?usp=send_form";
+//        $.post( 'http://127.0.0.1:8888/notelog', function(JSON.stringify(data)));
     });
 });
