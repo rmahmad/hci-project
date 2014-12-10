@@ -85,7 +85,7 @@ io.on('connection', function(socket) {
                 if(intro) {
                     timer--;
                     if(timer === 0) {
-                        timer = 600;
+                        timer = 900;
                         intro = false;
                     }
                 }

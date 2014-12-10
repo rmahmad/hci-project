@@ -50,7 +50,7 @@ socket.on('timer', function(data) {
         if($('#intro-overlay').css('display') != 'none') {
             $('#intro-overlay').hide(500);
             $('#movie').attr('controls', true);
-            $('#messages').append($('<li class="signal-message">').text('The introduction time has ended! Click the play button on the video to begin watching the video.'));
+            $('#messages').append($('<li name="0" class="signal-message">').text('The introduction time has ended! Click the play button on the video to begin watching the video.'));
             $("#messages").scrollTop($("#messages")[0].scrollHeight);
         }
         if(data.timer === -1) {
