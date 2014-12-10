@@ -34,7 +34,7 @@ $(document).ready(function() {
                     'lines': lines,
                     'markers': markers
                 };
-                $.post('http://127.0.0.1:8888/notelog', data, null, 'json');
+                $.post('https://whispering-plains-4590.herokuapp.com/notelog', data, null, 'json');
                 $('#timer-modal').modal('show');
             }
         }, 1000);
@@ -81,8 +81,7 @@ $(document).ready(function() {
             'lines': lines,
             'markers': markers
         };
-        $.post( 'http://127.0.0.1:8888/notelog', data, null, 'json');
+        $.post('https://whispering-plains-4590.herokuapp.com/notelog', data, null, 'json');
         window.location.href = "https://docs.google.com/a/eng.ucsd.edu/forms/d/1QZMiyiWow_coQFNxSy1jsAW8KLTdLDyORTdIu1VrfuI/viewform?usp=send_form";
-//        $.post( 'http://127.0.0.1:8888/notelog', function(JSON.stringify(data)));
     });
 });
