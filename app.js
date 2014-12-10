@@ -15,6 +15,8 @@ var numChats = [0, 0];
 var numSignals = [0, 0];
 var timer = 60;
 var readyUsers = 0;
+var running = false;
+var intro = true;
 
 io.on('connection', function(socket) {
     var startDate = new Date();
@@ -44,6 +46,8 @@ io.on('connection', function(socket) {
             numChats = [0, 0];
             numSignals = [0, 0];
             timer = 60;
+            running = false;
+            intro = true;
         }
     });
     socket.on('chat message', function(msg){
@@ -77,10 +81,10 @@ io.on('connection', function(socket) {
             readyUsers++;
             if(readyUsers === 2) {
                 io.emit('connected', 'Your partner has connected');
+                running = true;
             }
         }
-        if(readyUsers === 2) {
-            var intro = true;
+        if(running) {
             var timerInterval = setInterval(function() {
                 if(intro) {
                     timer--;

@@ -17,7 +17,7 @@ $(document).ready(function() {
     });
 
     $('#tutorial-modal-5').on('hidden.bs.modal', function () {
-        var timer = 1080;
+        var timer = 900;
         var timerInterval = setInterval(function() {
             $('#timer').text('Time left: ' + Math.floor(timer/60) + ':' + (timer%60 < 10 ? '0' + timer%60 : timer%60));
             timer--;
